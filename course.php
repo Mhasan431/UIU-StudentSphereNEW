@@ -2,55 +2,14 @@
 <html>
 <head>
     <title>UIU Online Courses</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color:#E9F994;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .course {
-            border: 1px solid #ccc;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .course h2 {
-            margin: 0;
-            font-size: 20px;
-            color: #333;
-        }
-
-        .course p {
-            margin-top: 10px;
-            color: #666;
-        }
-
-        .course a {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 16px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .course a:hover {
-            background-color: #45a049;
-        }
-    </style>
+    
 </head>
 <body>
+      <!-- Include header.php -->
+  <?php include 'header.php'; ?>
+
+<!-- Include navbar.php -->
+<?php include 'navbar.php'; ?>
     <h1>UIU Online Courses</h1>
 
     <?php
@@ -117,5 +76,10 @@
     }
     ?>
 
+    
+      <!-- Include footer.php -->
+      <?php include 'footer.php'; ?>
+
 </body>
 </html>
+
