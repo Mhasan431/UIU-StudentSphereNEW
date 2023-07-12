@@ -1,0 +1,96 @@
+[33mcommit 53b33bc42f57b5f03fe453b151ab73eea6b83540[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 2a82b8a 0b6fbd8
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 08:46:27 2023 +0600
+
+    Merge branch 'master' of https://github.com/Mhasan431/UIU-StudentSphereNEW
+
+[33mcommit 2a82b8a54a47bea3e702efe7373c456fd27c468e[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 08:45:41 2023 +0600
+
+    little updated
+
+[33mcommit 0b6fbd85ea8a0b7b6c836ae449b4bb721ecc33d6[m
+Author: zubairzaarif <zmhamud@gmail.com>
+Date:   Wed Jul 12 08:18:47 2023 +0600
+
+    add by jubayer
+
+[33mcommit c0aa7b6cbb1dcecd061d4a317c956647f3eb370d[m
+Author: zubairzaarif <zmhamud@gmail.com>
+Date:   Wed Jul 12 08:13:48 2023 +0600
+
+    add by jubayer
+
+[33mcommit 09fb3bd4926270d14ef4b2cd0b0eae8876893eb4[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 02:28:48 2023 +0600
+
+    some pictures added
+
+[33mcommit a8c82c8cf0e9cb097dae68e17ec7c81da2f5f6e1[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 02:27:24 2023 +0600
+
+    carousl.php and foot.php  are added
+
+[33mcommit c1153ffc6c70b3085e8d6cd9f2a9c4f4c53d9b36[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 02:25:08 2023 +0600
+
+    index.php and navbar.php file updated
+
+[33mcommit 623b842b77724b460e49ed630050f055ad25126d[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 02:00:45 2023 +0600
+
+    Index.php updated with navbar, header and footer
+
+[33mcommit 7378bdc7bbb2ccde20fc672b24cf256b3eafddf2[m
+Author: sabiha415 <usabiha201415@bscse.uiu.ac.bd>
+Date:   Tue Jul 11 19:22:16 2023 +0600
+
+    Signup file created
+
+[33mcommit 48c69742fc54885faa0cb2e3619811cf4a15a1d1[m
+Author: sabiha415 <usabiha201415@bscse.uiu.ac.bd>
+Date:   Tue Jul 11 19:20:30 2023 +0600
+
+    header and footer added
+
+[33mcommit e37c2fb40e2a71e61356311d4aaa6f640fdef54b[m
+Author: sabiha415 <usabiha201415@bscse.uiu.ac.bd>
+Date:   Tue Jul 11 19:18:34 2023 +0600
+
+    login file created
+
+[33mcommit 4260a520c855071e3e3af3ed0c9b7010a1ecd1db[m
+Author: sabiha415 <usabiha201415@bscse.uiu.ac.bd>
+Date:   Tue Jul 11 19:16:32 2023 +0600
+
+    connection created
+
+[33mcommit 619f6ac2a68acfe76b891fa955de9b23bddc93ea[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 01:27:10 2023 +0600
+
+    Footer is added
+
+[33mcommit f98953a3cef09fe289a06b59d59ed0fcc35175dc[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 01:24:35 2023 +0600
+
+    Complete Navigationbar added
+
+[33mcommit 0b56c03350fc7097fc195a9bbfcb7b3855676f03[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 01:21:39 2023 +0600
+
+    header.php added
+
+[33mcommit f96c2105c2533560345986da2f5fc5bdf8c70ff3[m
+Author: Mahadi Hasan <mhasan201431@bscse.uiu.ac.bd>
+Date:   Wed Jul 12 01:12:33 2023 +0600
+
+    NEW reposiroty Created

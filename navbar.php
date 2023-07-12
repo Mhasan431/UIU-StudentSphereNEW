@@ -28,6 +28,9 @@
                 <a class="nav-link" href="user.php">Participants</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="course.php">Course</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="jobs.php">Jobs</a>
               </li>
               <li class="nav-item">
