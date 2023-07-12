@@ -43,10 +43,11 @@
             <input class="form-control " type="text" placeholder="Description and details about the job"> <br>
             <div class="inputStyle">
                 <p class="post">Posted by: Mahadi Hasan</p>
-                <!-- <a href="postJob.html">
-                        <button type="button" class="btn btn-primary btn-sm mx-4">Read More</button>
-                    </a> -->
-                <button type="button" class="btn btn-primary btn-sm mx-4">Read More</button>
+                <a href="postJob.html">
+                <button type="button" class="btn btn-primary btn-lg">+ Post a job opportunity</button>
+            
+             </a>
+                <!-- <button type="button" class="btn btn-primary btn-sm mx-4">Read More</button> -->
 
             </div>
         </div>
