@@ -15,6 +15,9 @@
           <a class="nav-link" href="course.php">Courses</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="jobs.html">Jobs</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="about.php">About</a>
         </li>
         <li class="nav-item">
