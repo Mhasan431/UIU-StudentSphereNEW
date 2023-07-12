@@ -21,7 +21,11 @@
     <section style="text-align: center;">
         <h2>Job List</h2>
         <hr>
-        <button type="button" class="btn btn-primary btn-lg">+ Post a job opportunity</button>
+        <a href="postJob.php">
+                <!-- <button type="button" class="btn btn-primary btn-lg">+ Post a job opportunity</button> -->
+                <button type="button" class="btn btn-primary btn-lg">+ Post a job opportunity</button>
+             </a>
+        <!-- <button type="button" class="btn btn-primary btn-lg">+ Post a job opportunity</button> -->
     </section>
     <!-- search and job title -->
     <section>
@@ -43,11 +47,8 @@
             <input class="form-control " type="text" placeholder="Description and details about the job"> <br>
             <div class="inputStyle">
                 <p class="post">Posted by: Mahadi Hasan</p>
-                <a href="postJob.html">
-                <button type="button" class="btn btn-primary btn-lg">+ Post a job opportunity</button>
-            
-             </a>
-                <!-- <button type="button" class="btn btn-primary btn-sm mx-4">Read More</button> -->
+                
+                <button type="button" class="btn btn-primary btn-sm mx-4">Read More</button>
 
             </div>
         </div>
