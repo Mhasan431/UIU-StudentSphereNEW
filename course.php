@@ -105,7 +105,7 @@
         
 
     );
-lel
+
   
     foreach ($courses as $course) {
         echo '<div class="course">';
