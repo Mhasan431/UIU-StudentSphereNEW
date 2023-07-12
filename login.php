@@ -22,5 +22,9 @@
   <p>Don't have an account? <a href="signup.php">Sign up</a> now.</p>
 </div>
 
+<br>
+<br><br>
+<br><br><br><br><br>
+
 <!-- Include footer.php -->
 <?php include 'footer.php'; ?>

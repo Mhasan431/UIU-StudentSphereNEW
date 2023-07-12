@@ -16,6 +16,8 @@
 
 <!-- Include foot.php -->
 <?php include 'foot.php'; ?>
+<br>
+<br><br>
 
 <!-- Include footer.php -->
 <?php include 'footer.php'; ?>

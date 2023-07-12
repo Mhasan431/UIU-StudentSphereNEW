@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>UIU Online Courses</title>
-    <style>
+
+       <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -49,8 +50,14 @@
             background-color: #45a049;
         }
     </style>
+    
 </head>
 <body>
+      <!-- Include header.php -->
+  <?php include 'header.php'; ?>
+
+<!-- Include navbar.php -->
+<?php include 'navbar.php'; ?>
     <h1>UIU Online Courses</h1>
 
     <?php
@@ -117,5 +124,12 @@
     }
     ?>
 
+    <br><br>
+
+    
+      <!-- Include footer.php -->
+      <?php include 'footer.php'; ?>
+
 </body>
 </html>
+
