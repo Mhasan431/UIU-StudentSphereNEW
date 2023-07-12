@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if ($isAdminVerified) {
   
     $host = "localhost";
-    $username = "your_username";
-    $password = "your_password";
+    $username = "root";
+    $password = "";
     $database = "UIU_StudentSphere";
 
     try {
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
  
-    $sql = "INSERT INTO users (first_name, last_name, gender, batch, department, connected_to, email, password) 
+    $sql = "INSERT INTO participants (first_name, last_name, gender, batch, department, connected_to, email, password) 
             VALUES (:firstName, :lastName, :gender, :batch, :department, :connectedTo, :email, :password)";
 
     $stmt = $pdo->prepare($sql);
