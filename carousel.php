@@ -6,13 +6,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="sunset.jpg" class="d-block w-100" alt="...">
+      <img src="uiu.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="landscape.jpg" class="d-block w-100" alt="...">
+      <img src="mars.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="lake.jpg" class="d-block w-100" alt="...">
+      <img src="uiuad.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">

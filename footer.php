@@ -8,9 +8,9 @@
             <div class="col-md-6">
                 <h3>Contact Us</h3>
                 <ul>
-                    <li>Address: Street, City, Country</li>
+                    <li>Address: Madani Avenew, Dhaka, Bangladesh</li>
                     <li>Phone: +880 1537247119</li>
-                    <li>Email: info@example.com</li>
+                    <li>Email: uiustudentsphere@gmail.com</li>
                 </ul>
             </div>
         </div>

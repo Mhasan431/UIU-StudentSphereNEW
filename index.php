@@ -14,6 +14,10 @@
 <!-- </div> -->
 <br><br>
 
+<hr>
+<br>
+<br>
+
 <!-- Include foot.php -->
 <?php include 'foot.php'; ?>
 <br>

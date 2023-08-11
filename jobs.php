@@ -10,8 +10,7 @@
 </head>
 
 <body class="bodyStyle">
-    <!-- navbar --><!-- Include header.php -->
-    <?php include 'header.php'; ?>
+   
 
     <!-- Include navbar.php -->
     <?php include 'navbar.php'; ?>
