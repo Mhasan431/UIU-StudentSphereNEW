@@ -3,7 +3,6 @@ $server = "localhost";
 $username = "root";
 $password = "";
 $database = "UIU_StudentSphere";
-
 // Create a connection
 $conn = new mysqli($server, $username, $password, $database);
 
