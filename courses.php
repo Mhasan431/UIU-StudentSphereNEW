@@ -106,7 +106,6 @@
         
 
 
-
         <?php
         $courses = array(
             array(
@@ -233,6 +232,7 @@
         });
 
         generateCourseList(courses);
+
     </script>
 </body>
 
