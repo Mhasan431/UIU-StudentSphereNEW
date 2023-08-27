@@ -97,7 +97,7 @@ flex-direction: inherit;
                 ?>
                 <div class="container">
                     <!-- designs here -->
-                <div class="col-md-10 item"> 
+                <div class="col-md-12 item"> 
                     <!-- designs end -->
                 <div class="card alumni-list" data-id="<?php echo $row['id'] ?>">
                         <div class="alumni-img" card-img-top>

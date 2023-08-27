@@ -17,7 +17,7 @@ include('header.php');
 
 <style>
   body {
-    background: darkorange;
+    background: lightblue;
   }
 
   footer {

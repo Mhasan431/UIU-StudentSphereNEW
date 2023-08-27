@@ -79,7 +79,7 @@ span.hightlight{
     
         </header>
             <div class="container mt-3 pt-2">
-                <h2 class="text-center text-white">Upcoming Events</h2>
+                <h2 class="text-center text-dark">Upcoming Events</h2>
                 <hr class="divider">
                 <?php
                 $event = $conn->query("SELECT * FROM events where date_format(schedule,'%Y-%m%-d') >= '".date('Y-m-d')."' order by unix_timestamp(schedule) asc");

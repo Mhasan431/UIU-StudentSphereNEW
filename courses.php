@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: darkorange;
+            background-color: lightblue;
         }
 
         h2 {
@@ -82,7 +82,7 @@
 </head>
 
 <body>
-    <br><br><br><br>
+    <br><br><br>
 
 
     <body>
@@ -91,7 +91,7 @@
 
 
     <div class="container">
-        <h2>UIU Online Courses</h2>
+        <h2>Resources</h2>
         
 
 
@@ -167,7 +167,7 @@
             echo '<h2>' . $course['title'] . '</h2>';
             echo '<p><strong>Instructor:</strong> ' . $course['instructor'] . '</p>';
             echo '<p>' . $course['description'] . '</p>';
-            echo '<a href="' . $course['link'] . '">Enroll Now</a>';
+            echo '<a href="' . $course['link'] . ' ">Enroll Now</a>';
 
             // Add the "Qs bank" button
             echo '<a href="' . $course['qslink'] . '/qs-bank">Qs Bank</a>';
@@ -206,8 +206,8 @@
                         <h2>${course.title}</h2>
                         <p><strong>Instructor:</strong> ${course.instructor}</p>
                         <p>${course.description}</p>
-                        <a href="${course.link}">Enroll Now</a>
-                        <a href="${course.qslink}/qs-bank">Qs Bank</a>
+                        <a href="${course.link}">Lectures</a>
+                        <a href="${course.qslink}/qs-bank">Question Bank</a>
                     `;
                     courseListContainer.appendChild(courseDiv);
                 });
