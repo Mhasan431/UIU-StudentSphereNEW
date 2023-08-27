@@ -1,6 +1,4 @@
-<?php 
-include 'admin/db_connect.php'; 
-?>
+
 <style>
 
 .gallery-list{

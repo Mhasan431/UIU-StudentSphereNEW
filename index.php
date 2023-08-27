@@ -27,6 +27,8 @@ include('header.php');
 
 <body id="page-top">
   <!-- Navigation-->
+  
+
   <div class="toast" id="alert_toast" role="alert" aria-live="assertive" aria-atomic="true">
     <div class="toast-body text-white bg-primary">
     </div>
@@ -46,6 +48,8 @@ include('header.php');
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=forum">Forums</a></li>
 
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=courses">Resources</a></li>
+
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=gitsearch">Git Search</a></li>
 
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=alumni_list">Participants</a></li>
 
@@ -69,6 +73,14 @@ include('header.php');
       </div>
     </div>
   </nav>
+
+
+
+
+
+
+
+
 
   <?php
   $page = isset($_GET['page']) ? $_GET['page'] : "home";
