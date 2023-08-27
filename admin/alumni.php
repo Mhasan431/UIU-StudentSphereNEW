@@ -70,13 +70,7 @@
 									</td>
 									<td class="text-center">
 										<button class="btn btn-sm btn-outline-primary view_alumni" type="button" data-id="<?php echo $row['id'] ?>" >View</button>
-
-
-
 										<button class="btn btn-sm btn-outline-danger delete_alumni" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
-
-
-
 									</td>
 								</tr>
 								<?php endwhile; ?>
@@ -128,7 +122,7 @@
 		
 	})
 	$('.delete_alumni').click(function(){
-		_conf("Are you sure to delete this participants?","delete_alumni",[$(this).attr('data-id')])
+		_conf("Are you sure to delete this alumni?","delete_alumni",[$(this).attr('data-id')])
 	})
 	
 	function delete_alumni($id){

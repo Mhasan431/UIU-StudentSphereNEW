@@ -17,7 +17,7 @@ include('header.php');
 
 <style>
   body {
-    background: lightgrey;
+    background: darkorange;
   }
 
   footer {
@@ -38,7 +38,7 @@ include('header.php');
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=home">Home</a></li>
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=alumni_list">Participants</a></li>
+          <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=alumni_list">Participants</a></li> -->
           <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=gallery">Gallery</a></li>
           <?php if (isset($_SESSION['login_id'])) : ?>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=careers">Jobs</a></li>
@@ -47,8 +47,10 @@ include('header.php');
 
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=courses">Resources</a></li>
 
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=alumni_list">Participants</a></li>
+
           <?php endif; ?>
-          <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php?page=about">About</a></li>
+ 
           <?php if (!isset($_SESSION['login_id'])) : ?>
             <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#" id="login">Login</a></li>
           <?php else : ?>

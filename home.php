@@ -59,31 +59,18 @@ span.hightlight{
 <div class="container">
 
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="landscape.jpg" class="d-block w-100" alt="...">
+      <img class="d-block w-100" src="slider.jpg" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img src="landscape.jpg" class="d-block w-100" alt="...">
+      <img class="d-block w-100" src="slider2.jpg" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img src="landscape.jpg" class="d-block w-100" alt="...">
+      <img class="d-block w-100" src="slider1.jpg" alt="Third slide">
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </button>
 </div>
 
 </div>
@@ -92,7 +79,7 @@ span.hightlight{
     
         </header>
             <div class="container mt-3 pt-2">
-                <h4 class="text-center text-dark">Upcoming Events</h4>
+                <h2 class="text-center text-white">Upcoming Events</h2>
                 <hr class="divider">
                 <?php
                 $event = $conn->query("SELECT * FROM events where date_format(schedule,'%Y-%m%-d') >= '".date('Y-m-d')."' order by unix_timestamp(schedule) asc");
