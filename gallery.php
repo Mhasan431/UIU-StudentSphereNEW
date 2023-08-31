@@ -26,20 +26,7 @@ h3{
 
 <br><br><br><br>
 <h3 class="text-dark">Gallery</h3>
-        <!-- <header class="masthead">
-            <div class="container-fluid h-100">
-                <div class="row h-100 align-items-center justify-content-center text-center">
-                    <div class="col-lg-8 align-self-end mb-4 page-title">
-                        <h3 class="text-white">Gallery</h3>
-                        <hr class="divider my-4" />
-
-                    <div class="col-md-12 mb-2 justify-content-center">
-                    </div>                        
-                    </div>
-                    
-                </div>
-            </div>
-        </header> -->
+       
             <div class="container-fluid mt-3 pt-2">
                
                 <div class="row-items">
@@ -103,9 +90,7 @@ h3{
 
 
 <script>
-    // $('.card.gallery-list').click(function(){
-    //     location.href = "index.php?page=view_gallery&id="+$(this).attr('data-id')
-    // })
+   
     $('.book-gallery').click(function(){
         uni_modal("Submit Booking Request","booking.php?gallery_id="+$(this).attr('data-id'))
     })

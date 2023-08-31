@@ -12,20 +12,6 @@ h3{
 <br><br><br><br>
 <h3 class="text-dark">Job List</h3>
 
-<!-- <header class="masthead">
-    <div class="container-fluid h-100">
-        <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-lg-8 align-self-end mb-4 page-title">
-                <h3 class="text-white">Job List</h3>
-                <hr class="divider my-4" />
-            <div class="row col-md-12 mb-2 justify-content-center">
-                    <button class="btn btn-primary btn-block col-sm-4" type="button" id="new_career"><i class="fa fa-plus"></i> Post a Job Opportunity</button>
-            </div>   
-            </div>
-            
-        </div>
-    </div>
-</header> -->
 
 <div class="row col-md-12 mb-2 justify-content-center">
                     <button class="btn btn-primary btn-block col-sm-4" type="button" id="new_career"><i class="fa fa-plus"></i> Post a Job Opportunity</button>
@@ -92,9 +78,7 @@ h3{
 
 
 <script>
-    // $('.card.gallery-list').click(function(){
-    //     location.href = "index.php?page=view_gallery&id="+$(this).attr('data-id')
-    // })
+   
     $('#new_career').click(function(){
         uni_modal("New Job Hiring","manage_career.php",'mid-large')
     })

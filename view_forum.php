@@ -17,22 +17,12 @@ include 'admin/db_connect.php';
 <h3 class="text-white"><?php echo $title ?></h3>
 
 
-<!-- <header class="masthead">
-    <div class="container-fluid h-100">
-        <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-lg-8 align-self-end mb-4 page-title">
-                <h3 class="text-white"><?php echo $title ?></h3>
-                <hr class="divider my-4" />
-            <div class="row col-md-12 mb-2 justify-content-center">
-                   <span class="badge badge-primary px-3 pt-1 pb-1">
-                        <b><i>Topic Created by: <?php echo $name ?></i></b>
-                    </span>
-            </div>   
-            </div>
-            
-        </div>
-    </div>
-</header> -->
+
+    <?php echo $title ?>
+                
+    <?php echo $name ?>
+   
+
 
 
 <div class="row col-md-12 mb-2 justify-content-center">
@@ -50,7 +40,7 @@ include 'admin/db_connect.php';
         </div>
     </div>
   	<?php 
-  	// echo "SELECT f.*,u.name,u.email FROM forum_comments f inner join users u on u.id = f.user_id where f.topic_id = $id order by f.id asc";
+  	
   	$comments = $conn->query("SELECT f.*,u.name,u.username FROM forum_comments f inner join users u on u.id = f.user_id where f.topic_id = $id order by f.id asc");
   	?>
     <div class="card mb-4">
@@ -101,9 +91,7 @@ include 'admin/db_connect.php';
 
 
 <script>
-    // $('.card.gallery-list').click(function(){
-    //     location.href = "index.php?page=view_gallery&id="+$(this).attr('data-id')
-    // })
+  
 	$('.jqte').jqte();
 
     $('#new_forum').click(function(){

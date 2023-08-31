@@ -9,27 +9,16 @@
 			</div>
 		</div>
 		<div class="row">
-			<!-- FORM Panel -->
-
-			<!-- Table Panel -->
+		
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
 						<b>List of Alumni</b>
-						<!-- <span class="float:right"><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="index.php?page=manage_alumni" id="new_alumni">
-					<i class="fa fa-plus"></i> New Entry
-				</a></span> -->
+						
 					</div>
 					<div class="card-body">
 						<table class="table table-condensed table-bordered table-hover">
-							<!-- <colgroup>
-								<col width="5%">
-								<col width="10%">
-								<col width="15%">
-								<col width="15%">
-								<col width="30%">
-								<col width="15%">
-							</colgroup> -->
+					
 							<thead>
 								<tr>
 									<th class="text-center">#</th>
@@ -79,7 +68,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- Table Panel -->
+		
 		</div>
 	</div>	
 
