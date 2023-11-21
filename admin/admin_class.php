@@ -22,16 +22,21 @@ class Action
     public function login()
     {
         extract($_POST);
-        $qry = $this->db->query("SELECT * FROM users where username = '$username'");
-        if ($qry->num_rows > 0) {
-            $data = $qry->fetch_assoc();
+
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
             if (password_verify($password, $data['password'])) {
                 foreach ($data as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
                         $_SESSION['login_' . $key] = $value;
                     }
-
                 }
+
                 if ($_SESSION['login_type'] != 1) {
                     foreach ($_SESSION as $key => $value) {
                         unset($_SESSION[$key]);
@@ -51,31 +56,41 @@ class Action
     public function login2()
     {
         extract($_POST);
+
         if (isset($email)) {
             $username = $email;
         }
 
-        $qry = $this->db->query("SELECT * FROM users where username = '$username'");
-        if ($qry->num_rows > 0) {
-            $data = $qry->fetch_assoc();
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
             if (password_verify($password, $data['password'])) {
                 foreach ($data as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
                         $_SESSION['login_' . $key] = $value;
                     }
-
                 }
+
                 if ($_SESSION['login_alumnus_id'] > 0) {
-                    $bio = $this->db->query("SELECT * FROM alumnus_bio where id = " . $_SESSION['login_alumnus_id']);
-                    if ($bio->num_rows > 0) {
-                        foreach ($bio->fetch_array() as $key => $value) {
+                    $bioStmt = $this->db->prepare("SELECT * FROM alumnus_bio WHERE id = ?");
+                    $bioStmt->bind_param("i", $_SESSION['login_alumnus_id']);
+                    $bioStmt->execute();
+                    $bioResult = $bioStmt->get_result();
+
+                    if ($bioResult->num_rows > 0) {
+                        $bioData = $bioResult->fetch_assoc();
+                        foreach ($bioData as $key => $value) {
                             if ($key != 'password' && !is_numeric($key)) {
                                 $_SESSION['bio'][$key] = $value;
                             }
-
                         }
                     }
                 }
+
                 if ($_SESSION['bio']['status'] != 1) {
                     foreach ($_SESSION as $key => $value) {
                         unset($_SESSION[$key]);
