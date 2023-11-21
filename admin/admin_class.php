@@ -19,6 +19,11 @@ class Action
         ob_end_flush();
     }
 
+    private function validateSessionVariable($value)
+    {
+        return htmlspecialchars(trim($value));
+    }
+
     public function login()
     {
         extract($_POST);
@@ -33,7 +38,7 @@ class Action
             if (password_verify($password, $data['password'])) {
                 foreach ($data as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
-                        $_SESSION['login_' . $key] = $value;
+                        $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
                     }
                 }
 
@@ -71,7 +76,7 @@ class Action
             if (password_verify($password, $data['password'])) {
                 foreach ($data as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
-                        $_SESSION['login_' . $key] = $value;
+                        $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
                     }
                 }
 
@@ -85,7 +90,7 @@ class Action
                         $bioData = $bioResult->fetch_assoc();
                         foreach ($bioData as $key => $value) {
                             if ($key != 'password' && !is_numeric($key)) {
-                                $_SESSION['bio'][$key] = $value;
+                                $_SESSION['bio'][$key] = $this->validateSessionVariable($value);
                             }
                         }
                     }
@@ -115,6 +120,7 @@ class Action
         }
         header("location:login.php");
     }
+
     public function logout2()
     {
         session_destroy();
@@ -123,14 +129,16 @@ class Action
         }
         header("location:../index.php");
     }
-
     public function save_user()
     {
         extract($_POST);
         $data = " name = '$name' ";
         $data .= ", username = '$username' ";
+
+        // Use password_hash for hashing the password
         if (!empty($password)) {
-            $data .= ", password = '" . md5($password) . "' ";
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $data .= ", password = '$hashedPassword' ";
         }
 
         $data .= ", type = '$type' ";
@@ -139,20 +147,23 @@ class Action
         }
 
         $data .= ", establishment_id = '$establishment_id' ";
-        $chk = $this->db->query("Select * from users where username = '$username' and id !='$id' ")->num_rows;
+
+        $chk = $this->db->query("SELECT * FROM users WHERE username = '$username' AND id != '$id'")->num_rows;
         if ($chk > 0) {
             return 2;
-            exit;
         }
+
         if (empty($id)) {
-            $save = $this->db->query("INSERT INTO users set " . $data);
+            $save = $this->db->query("INSERT INTO users SET " . $data);
         } else {
-            $save = $this->db->query("UPDATE users set " . $data . " where id = " . $id);
+            $save = $this->db->query("UPDATE users SET " . $data . " WHERE id = " . $id);
         }
+
         if ($save) {
             return 1;
         }
     }
+
     public function delete_user()
     {
         extract($_POST);
@@ -167,16 +178,20 @@ class Action
         extract($_POST);
         $data = " name = '" . $firstname . ' ' . $lastname . "' ";
         $data .= ", username = '$email' ";
+
+        // Use password_hash for hashing the password
         $data .= ", password = '" . password_hash($password, PASSWORD_DEFAULT) . "' ";
-        $chk = $this->db->query("SELECT * FROM users where username = '$email' ")->num_rows;
+
+        $chk = $this->db->query("SELECT * FROM users WHERE username = '$email'")->num_rows;
         if ($chk > 0) {
             return 2;
-            exit;
         }
-        $save = $this->db->query("INSERT INTO users set " . $data);
+
+        $save = $this->db->query("INSERT INTO users SET " . $data);
         if ($save) {
             $uid = $this->db->insert_id;
             $data = '';
+
             foreach ($_POST as $k => $v) {
                 if ($k == 'password') {
                     continue;
@@ -187,22 +202,22 @@ class Action
                 } else {
                     $data .= ", $k = '$v' ";
                 }
-
             }
+
             if ($_FILES['img']['tmp_name'] != '') {
                 $fname = strtotime(date('y-m-d H:i')) . '_' . $_FILES['img']['name'];
                 $move = move_uploaded_file($_FILES['img']['tmp_name'], 'assets/uploads/' . $fname);
                 $data .= ", avatar = '$fname' ";
             }
-            $save_alumni = $this->db->query("INSERT INTO alumnus_bio set $data ");
-            if ($data) {
+
+            $save_alumni = $this->db->query("INSERT INTO alumnus_bio SET $data ");
+            if ($save_alumni) {
                 $aid = $this->db->insert_id;
-                $this->db->query("UPDATE users set alumnus_id = $aid where id = $uid ");
+                $this->db->query("UPDATE users SET alumnus_id = $aid WHERE id = $uid ");
                 $login = $this->login2();
                 if ($login) {
                     return 1;
                 }
-
             }
         }
     }
@@ -210,50 +225,61 @@ class Action
     public function update_account()
     {
         extract($_POST);
-        $data = " name = '" . $firstname . ' ' . $lastname . "' ";
-        $data .= ", username = '$email' ";
+
+        // Validate and sanitize input
+        $firstname = $this->validateSessionVariable($firstname);
+        $lastname = $this->validateSessionVariable($lastname);
+        $email = $this->validateSessionVariable($email);
+
+        // Construct data for user table update
+        $dataUser = " name = '$firstname $lastname' ";
+        $dataUser .= ", username = '$email' ";
+
+        // Update password only if a new one is provided
         if (!empty($password)) {
-            $data .= ", password = '" . md5($password) . "' ";
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $dataUser .= ", password = '$hashedPassword' ";
         }
 
-        $chk = $this->db->query("SELECT * FROM users where username = '$email' and id != '{$_SESSION['login_id']}' ")->num_rows;
+        // Check for email uniqueness
+        $chk = $this->db->query("SELECT * FROM users WHERE username = '$email' AND id != '{$_SESSION['login_id']}'")->num_rows;
         if ($chk > 0) {
-            return 2;
-            exit;
+            return 2; // Duplicate email
         }
-        $save = $this->db->query("UPDATE users set $data where id = '{$_SESSION['login_id']}' ");
-        if ($save) {
-            $data = '';
-            foreach ($_POST as $k => $v) {
-                if ($k == 'password') {
-                    continue;
-                }
 
-                if (empty($data) && !is_numeric($k)) {
-                    $data = " $k = '$v' ";
-                } else {
-                    $data .= ", $k = '$v' ";
-                }
+        // Update user table
+        $saveUser = $this->db->query("UPDATE users SET $dataUser WHERE id = '{$_SESSION['login_id']}' ");
 
-            }
+        if ($saveUser) {
+            // Construct data for alumnus_bio table update
+            $dataBio = " name = '$firstname $lastname' ";
+            $dataBio .= ", username = '$email' ";
+
+            // Update avatar only if a new one is provided
             if ($_FILES['img']['tmp_name'] != '') {
                 $fname = strtotime(date('y-m-d H:i')) . '_' . $_FILES['img']['name'];
                 $move = move_uploaded_file($_FILES['img']['tmp_name'], 'assets/uploads/' . $fname);
-                $data .= ", avatar = '$fname' ";
-
+                $dataBio .= ", avatar = '$fname' ";
             }
-            $save_alumni = $this->db->query("UPDATE alumnus_bio set $data where id = '{$_SESSION['bio']['id']}' ");
-            if ($data) {
+
+            // Update alumnus_bio table
+            $saveBio = $this->db->query("UPDATE alumnus_bio SET $dataBio WHERE id = '{$_SESSION['bio']['id']}' ");
+
+            if ($saveBio) {
+                // Clear session variables
                 foreach ($_SESSION as $key => $value) {
                     unset($_SESSION[$key]);
                 }
+
+                // Perform login to update session variables
                 $login = $this->login2();
                 if ($login) {
-                    return 1;
+                    return 1; // Success
                 }
-
             }
         }
+
+        return 0; // General failure
     }
 
     public function save_settings()
@@ -270,7 +296,6 @@ class Action
 
         }
 
-        // echo "INSERT INTO system_settings set ".$data;
         $chk = $this->db->query("SELECT * FROM system_settings");
         if ($chk->num_rows > 0) {
             $save = $this->db->query("UPDATE system_settings set " . $data);
