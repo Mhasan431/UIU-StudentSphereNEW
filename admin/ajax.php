@@ -1,147 +1,122 @@
 <?php
 ob_start();
+
 $action = $_GET['action'];
 include 'admin_class.php';
+
 $crud = new Action();
-if($action == 'login'){
-	$login = $crud->login();
-	if($login)
-		echo $login;
-}
-if($action == 'login2'){
-	$login = $crud->login2();
-	if($login)
-		echo $login;
-}
-if($action == 'logout'){
-	$logout = $crud->logout();
-	if($logout)
-		echo $logout;
-}
-if($action == 'logout2'){
-	$logout = $crud->logout2();
-	if($logout)
-		echo $logout;
-}
-if($action == 'save_user'){
-	$save = $crud->save_user();
-	if($save)
-		echo $save;
-}
-if($action == 'delete_user'){
-	$save = $crud->delete_user();
-	if($save)
-		echo $save;
-}
-if($action == 'signup'){
-	$save = $crud->signup();
-	if($save)
-		echo $save;
-}
-if($action == 'update_account'){
-	$save = $crud->update_account();
-	if($save)
-		echo $save;
-}
-if($action == "save_settings"){
-	$save = $crud->save_settings();
-	if($save)
-		echo $save;
-}
-if($action == "save_course"){
-	$save = $crud->save_course();
-	if($save)
-		echo $save;
+
+switch ($action) {
+    case 'login':
+        echo $crud->login();
+        break;
+
+    case 'login2':
+        echo $crud->login2();
+        break;
+
+    case 'logout':
+        echo $crud->logout();
+        break;
+
+    case 'logout2':
+        echo $crud->logout2();
+        break;
+
+    case 'save_user':
+        echo $crud->save_user();
+        break;
+
+    case 'delete_user':
+        echo $crud->delete_user();
+        break;
+
+    case 'signup':
+        echo $crud->signup();
+        break;
+
+    case 'update_account':
+        echo $crud->update_account();
+        break;
+
+    case 'save_settings':
+        echo $crud->save_settings();
+        break;
+
+    case 'save_course':
+        echo $crud->save_course();
+        break;
+
+    case 'delete_course':
+        echo $crud->delete_course();
+        break;
+
+    case 'update_alumni_acc':
+        echo $crud->update_alumni_acc();
+        break;
+
+    case 'save_gallery':
+        echo $crud->save_gallery();
+        break;
+
+    case 'delete_gallery':
+        echo $crud->delete_gallery();
+        break;
+
+    case 'save_career':
+        echo $crud->save_career();
+        break;
+
+    case 'delete_career':
+        echo $crud->delete_career();
+        break;
+
+    case 'save_forum':
+        echo $crud->save_forum();
+        break;
+
+    case 'delete_forum':
+        echo $crud->delete_forum();
+        break;
+
+    case 'save_comment':
+        echo $crud->save_comment();
+        break;
+
+    case 'delete_comment':
+        echo $crud->delete_comment();
+        break;
+
+    case 'save_event':
+        echo $crud->save_event();
+        break;
+
+    case 'delete_event':
+        echo $crud->delete_event();
+        break;
+
+    case 'participate':
+        echo $crud->participate();
+        break;
+
+    case 'get_venue_report':
+        echo $crud->get_venue_report();
+        break;
+
+    case 'save_art_fs':
+        echo $crud->save_art_fs();
+        break;
+
+    case 'delete_art_fs':
+        echo $crud->delete_art_fs();
+        break;
+
+    case 'get_pdetails':
+        echo $crud->get_pdetails();
+        break;
+
+    default:
+        echo "Invalid action";
 }
 
-if($action == "delete_course"){
-	$delete = $crud->delete_course();
-	if($delete)
-		echo $delete;
-}
-if($action == "update_alumni_acc"){
-	$save = $crud->update_alumni_acc();
-	if($save)
-		echo $save;
-}
-if($action == "save_gallery"){
-	$save = $crud->save_gallery();
-	if($save)
-		echo $save;
-}
-if($action == "delete_gallery"){
-	$save = $crud->delete_gallery();
-	if($save)
-		echo $save;
-}
-
-if($action == "save_career"){
-	$save = $crud->save_career();
-	if($save)
-		echo $save;
-}
-if($action == "delete_career"){
-	$save = $crud->delete_career();
-	if($save)
-		echo $save;
-}
-if($action == "save_forum"){
-	$save = $crud->save_forum();
-	if($save)
-		echo $save;
-}
-if($action == "delete_forum"){
-	$save = $crud->delete_forum();
-	if($save)
-		echo $save;
-}
-
-if($action == "save_comment"){
-	$save = $crud->save_comment();
-	if($save)
-		echo $save;
-}
-if($action == "delete_comment"){
-	$save = $crud->delete_comment();
-	if($save)
-		echo $save;
-
-}
-
-if($action == "save_event"){
-	$save = $crud->save_event();
-	if($save)
-		echo $save;
-}
-if($action == "delete_event"){
-	$save = $crud->delete_event();
-	if($save)
-		echo $save;
-}	
-if($action == "participate"){
-	$save = $crud->participate();
-	if($save)
-		echo $save;
-}
-if($action == "get_venue_report"){
-	$get = $crud->get_venue_report();
-	if($get)
-		echo $get;
-}
-if($action == "save_art_fs"){
-	$save = $crud->save_art_fs();
-	if($save)
-		echo $save;
-}
-if($action == "delete_art_fs"){
-	$save = $crud->delete_art_fs();
-	if($save)
-		echo $save;
-}
-if($action == "get_pdetails"){
-	$get = $crud->get_pdetails();
-	if($get)
-		echo $get;
-}
 ob_end_flush();
-?>
