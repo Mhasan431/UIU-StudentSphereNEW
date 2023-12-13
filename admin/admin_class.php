@@ -173,9 +173,42 @@ class Action
         }
 
     }
+
+    private function checkPasswordStrength($password)
+    {
+        // Minimum length
+        $min_length = 8;
+
+        // Regular expressions for checking different criteria
+        $has_lowercase = preg_match('/[a-z]/', $password);
+        $has_uppercase = preg_match('/[A-Z]/', $password);
+        $has_digit = preg_match('/\d/', $password);
+        $has_special_char = preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password);
+
+        // Check minimum length
+        if (strlen($password) < $min_length) {
+            return 4;
+        }
+
+        // Check for lowercase, uppercase, digit, and special character
+        if (!($has_lowercase && $has_uppercase && $has_digit && $has_special_char)) {
+            return 5;
+        }
+
+        // Password is strong
+        return true;
+    }
+
     public function signup()
     {
         extract($_POST);
+
+        // Check password strength
+        $password_strength = $this->checkPasswordStrength($password);
+        if ($password_strength !== true) {
+            return $password_strength; // Return the error message
+        }
+
         $data = " name = '" . $firstname . ' ' . $lastname . "' ";
         $data .= ", username = '$email' ";
 
@@ -184,7 +217,7 @@ class Action
 
         $chk = $this->db->query("SELECT * FROM users WHERE username = '$email'")->num_rows;
         if ($chk > 0) {
-            return 2;
+            return 2; // Username already exists
         }
 
         $save = $this->db->query("INSERT INTO users SET " . $data);
@@ -216,10 +249,12 @@ class Action
                 $this->db->query("UPDATE users SET alumnus_id = $aid WHERE id = $uid ");
                 $login = $this->login2();
                 if ($login) {
-                    return 1;
+                    return 1; // Success
                 }
             }
         }
+
+        return 0; // General failure
     }
 
     public function update_account()

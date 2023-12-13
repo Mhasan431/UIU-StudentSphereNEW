@@ -1,5 +1,5 @@
-<?php 
-include 'admin/db_connect.php'; 
+<?php
+include 'admin/db_connect.php';
 ?>
 <style>
 .masthead {
@@ -82,12 +82,12 @@ h3 {
                                 <label for="" class="control-label">Course Graduated</label>
                                 <select class="custom-select select2" name="course_id" required>
                                     <option></option>
-                                    <?php 
-                                                    $course = $conn->query("SELECT * FROM courses order by course asc");
-                                                    while($row=$course->fetch_assoc()):
-                                                    ?>
+                                    <?php
+$course = $conn->query("SELECT * FROM courses order by course asc");
+while ($row = $course->fetch_assoc()):
+?>
                                     <option value="<?php echo $row['id'] ?>"><?php echo $row['course'] ?></option>
-                                    <?php endwhile; ?>
+                                    <?php endwhile;?>
                                 </select>
                             </div>
 
@@ -157,6 +157,16 @@ $('#create_account').submit(function(e) {
         success: function(resp) {
             if (resp == 1) {
                 location.replace('index.php')
+            } else if (resp == 4) {
+                $('#msg').html(
+                    '<div class="alert alert-danger">Password should be at least 8 characters long.</div>'
+                )
+                end_load()
+            } else if (resp == 5) {
+                $('#msg').html(
+                    '<div class="alert alert-danger">Password should contain at least one lowercase letter, one uppercase letter, one digit, and one special character..</div>'
+                )
+                end_load()
             } else {
                 $('#msg').html('<div class="alert alert-danger">email already exist.</div>')
                 end_load()
