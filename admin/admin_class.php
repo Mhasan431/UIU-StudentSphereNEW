@@ -26,6 +26,39 @@ class Action
 
     public function login()
     {
+        extract($_POST);
+
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
+            if (password_verify($password, $data['password'])) {
+                foreach ($data as $key => $value) {
+                    if ($key != 'password' && !is_numeric($key)) {
+                        $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
+                    }
+                }
+
+                if ($_SESSION['login_type'] != 1) {
+                    foreach ($_SESSION as $key => $value) {
+                        unset($_SESSION[$key]);
+                    }
+                    return 2;
+                    exit;
+                }
+                return 1;
+            } else {
+                return 3;
+            }
+        } else {
+            return 3;
+        }
+    }
+    public function login2()
+    {
         // Check if there is a previous login attempt count stored in the session
         if (!isset($_SESSION['login_attempts'])) {
             $_SESSION['login_attempts'] = 0;
@@ -38,9 +71,15 @@ class Action
 
         // Check if the user has exceeded the maximum number of login attempts
         if ($_SESSION['login_attempts'] >= 5) {
+<<<<<<< HEAD
 
             $_SESSION['lockout_time'] = time() + 300;
             return 4;
+=======
+            // Set the lockout time to 5 minutes from now
+            $_SESSION['lockout_time'] = time() + 300; // 300 seconds (5 minutes)
+            return 4; // Return an error code indicating that login attempts are exceeded
+>>>>>>> 1cd3b6c79ecd0c70193bddefb6fd0527831d2741
         }
 
         extract($_POST);
@@ -54,52 +93,6 @@ class Action
             $data = $result->fetch_assoc();
             if (password_verify($password, $data['password'])) {
                 // Successful login
-                foreach ($data as $key => $value) {
-                    if ($key != 'password' && !is_numeric($key)) {
-                        $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
-                    }
-                }
-
-                if ($_SESSION['login_type'] != 1) {
-                    // Reset login attempts if the user is not an admin
-                    $_SESSION['login_attempts'] = 0;
-
-                    foreach ($_SESSION as $key => $value) {
-                        unset($_SESSION[$key]);
-                    }
-                    return 2;
-                }
-
-                // Reset login attempts on successful login
-                $_SESSION['login_attempts'] = 0;
-                return 1;
-            } else {
-                // Increment login attempts on failed login
-                $_SESSION['login_attempts']++;
-                return 3;
-            }
-        } else {
-            // Increment login attempts on failed login
-            $_SESSION['login_attempts']++;
-            return 3;
-        }
-    }
-    public function login2()
-    {
-        extract($_POST);
-
-        if (isset($email)) {
-            $username = $email;
-        }
-
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $data = $result->fetch_assoc();
-            if (password_verify($password, $data['password'])) {
                 foreach ($data as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
                         $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
@@ -123,17 +116,26 @@ class Action
                 }
 
                 if ($_SESSION['bio']['status'] != 1) {
+                    // Reset login attempts if the user is not an admin
+                    $_SESSION['login_attempts'] = 0;
+
                     foreach ($_SESSION as $key => $value) {
                         unset($_SESSION[$key]);
                     }
                     return 2;
-                    exit;
                 }
+
+                // Reset login attempts on successful login
+                $_SESSION['login_attempts'] = 0;
                 return 1;
             } else {
+                // Increment login attempts on failed login
+                $_SESSION['login_attempts']++;
                 return 3;
             }
         } else {
+            // Increment login attempts on failed login
+            $_SESSION['login_attempts']++;
             return 3;
         }
     }
