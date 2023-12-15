@@ -37,7 +37,7 @@ class Action
         }
 
         // Check if the user has exceeded the maximum number of login attempts
-        if ($_SESSION['login_attempts'] >= 3) {
+        if ($_SESSION['login_attempts'] >= 5) {
 
             $_SESSION['lockout_time'] = time() + 300;
             return 4;
