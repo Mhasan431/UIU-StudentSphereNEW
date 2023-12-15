@@ -39,11 +39,22 @@ $('#login-frm').submit(function(e) {
             if (resp == 1) {
                 location.href =
                     '<?php echo isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php?page=home' ?>';
+<<<<<<< HEAD
             } else if (resp == 4) {
                 $('#login-frm').prepend(
                     '<div class="alert alert-danger">You attempted 5 unsuccessful login. Your login attempts are exceeded. You are blocked for 5 mins.</div>'
                 )
                 $('#login-frm button[type="submit"]').removeAttr('disabled').html('Login');
+=======
+<<<<<<< HEAD
+=======
+            } else if (resp == 4) {
+                $('#login-frm').prepend(
+                    '<div class="alert alert-danger">You attempts 5 unsuccessful login. Your login attempts are exceeded. You are blocked for 5 mins.</div>'
+                    )
+                $('#login-frm button[type="submit"]').removeAttr('disabled').html('Login');
+>>>>>>> 1cd3b6c79ecd0c70193bddefb6fd0527831d2741
+>>>>>>> 870dab02142f71b917f052736a711315443f6441
             } else if (resp == 2) {
                 $('#login-frm').prepend(
                     '<div class="alert alert-danger">Your account is not yet verified.</div>')
