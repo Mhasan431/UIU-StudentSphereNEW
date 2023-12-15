@@ -38,10 +38,13 @@ class Action
     {
         extract($_POST);
 
+<<<<<<< HEAD
         // Validate and sanitize input
         $username = $this->validateSessionVariable($username);
 
         // Use prepared statement to prevent SQL injection
+=======
+>>>>>>> 870dab02142f71b917f052736a711315443f6441
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -56,16 +59,21 @@ class Action
                     }
                 }
 
+<<<<<<< HEAD
                 // Regenerate session ID for added security
                 session_regenerate_id(true);
 
                 if ($_SESSION['login_type'] != 1) {
                     // Log failed login attempt for non-admin users
                     $this->logError('Failed login attempt for user ' . $username . '. Non-admin login attempted.');
+=======
+                if ($_SESSION['login_type'] != 1) {
+>>>>>>> 870dab02142f71b917f052736a711315443f6441
                     foreach ($_SESSION as $key => $value) {
                         unset($_SESSION[$key]);
                     }
                     return 2;
+<<<<<<< HEAD
                 }
 
                 // Log successful login
@@ -84,6 +92,18 @@ class Action
         }
     }
 
+=======
+                    exit;
+                }
+                return 1;
+            } else {
+                return 3;
+            }
+        } else {
+            return 3;
+        }
+    }
+>>>>>>> 870dab02142f71b917f052736a711315443f6441
     public function login2()
     {
         // Check if there is a previous login attempt count stored in the session
@@ -98,9 +118,21 @@ class Action
 
         // Check if the user has exceeded the maximum number of login attempts
         if ($_SESSION['login_attempts'] >= 5) {
+<<<<<<< HEAD
             // Set the lockout time to 5 minutes from now
             $_SESSION['lockout_time'] = time() + 300; // 300 seconds (5 minutes)
             return 4; // Return an error code indicating that login attempts are exceeded
+=======
+<<<<<<< HEAD
+
+            $_SESSION['lockout_time'] = time() + 300;
+            return 4;
+=======
+            // Set the lockout time to 5 minutes from now
+            $_SESSION['lockout_time'] = time() + 300; // 300 seconds (5 minutes)
+            return 4; // Return an error code indicating that login attempts are exceeded
+>>>>>>> 1cd3b6c79ecd0c70193bddefb6fd0527831d2741
+>>>>>>> 870dab02142f71b917f052736a711315443f6441
         }
 
         extract($_POST);
