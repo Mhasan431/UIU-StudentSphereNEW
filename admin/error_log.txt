@@ -1,0 +1,4 @@
+[ERROR] 2023-12-15 20:52:32 - Failed login attempt for user admin. Incorrect password.
+[ERROR] 2023-12-15 20:52:40 - Failed login attempt for user Admin. Incorrect password.
+[ERROR] 2023-12-15 20:53:00 - Failed login attempt for user Mahadi. User not found.
+[ERROR] 2023-12-15 20:53:15 - Failed login attempt for user Mahadi. User not found.

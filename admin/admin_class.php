@@ -24,7 +24,67 @@ class Action
         return htmlspecialchars(trim($value));
     }
 
+    private function logError($message)
+    {
+        error_log('[ERROR] ' . date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, 3, 'error_log.txt');
+    }
+
+    private function logInfo($message)
+    {
+        error_log('[INFO] ' . date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, 3, 'info_log.txt');
+    }
+
     public function login()
+    {
+        extract($_POST);
+
+        // Validate and sanitize input
+        $username = $this->validateSessionVariable($username);
+
+        // Use prepared statement to prevent SQL injection
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $data = $result->fetch_assoc();
+            if (password_verify($password, $data['password'])) {
+                foreach ($data as $key => $value) {
+                    if ($key != 'password' && !is_numeric($key)) {
+                        $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
+                    }
+                }
+
+                // Regenerate session ID for added security
+                session_regenerate_id(true);
+
+                if ($_SESSION['login_type'] != 1) {
+                    // Log failed login attempt for non-admin users
+                    $this->logError('Failed login attempt for user ' . $username . '. Non-admin login attempted.');
+                    foreach ($_SESSION as $key => $value) {
+                        unset($_SESSION[$key]);
+                    }
+                    return 2;
+                }
+
+                // Log successful login
+                $this->logInfo('User ' . $username . ' logged in successfully.');
+
+                return 1;
+            } else {
+                // Log failed login attempt
+                $this->logError('Failed login attempt for user ' . $username . '. Incorrect password.');
+                return 3;
+            }
+        } else {
+            // Log failed login attempt
+            $this->logError('Failed login attempt for user ' . $username . '. User not found.');
+            return 3;
+        }
+    }
+
+    public function login2()
     {
         // Check if there is a previous login attempt count stored in the session
         if (!isset($_SESSION['login_attempts'])) {
@@ -37,10 +97,10 @@ class Action
         }
 
         // Check if the user has exceeded the maximum number of login attempts
-        if ($_SESSION['login_attempts'] >= 3) {
-
-            $_SESSION['lockout_time'] = time() + 300;
-            return 4;
+        if ($_SESSION['login_attempts'] >= 5) {
+            // Set the lockout time to 5 minutes from now
+            $_SESSION['lockout_time'] = time() + 300; // 300 seconds (5 minutes)
+            return 4; // Return an error code indicating that login attempts are exceeded
         }
 
         extract($_POST);
@@ -54,52 +114,6 @@ class Action
             $data = $result->fetch_assoc();
             if (password_verify($password, $data['password'])) {
                 // Successful login
-                foreach ($data as $key => $value) {
-                    if ($key != 'password' && !is_numeric($key)) {
-                        $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
-                    }
-                }
-
-                if ($_SESSION['login_type'] != 1) {
-                    // Reset login attempts if the user is not an admin
-                    $_SESSION['login_attempts'] = 0;
-
-                    foreach ($_SESSION as $key => $value) {
-                        unset($_SESSION[$key]);
-                    }
-                    return 2;
-                }
-
-                // Reset login attempts on successful login
-                $_SESSION['login_attempts'] = 0;
-                return 1;
-            } else {
-                // Increment login attempts on failed login
-                $_SESSION['login_attempts']++;
-                return 3;
-            }
-        } else {
-            // Increment login attempts on failed login
-            $_SESSION['login_attempts']++;
-            return 3;
-        }
-    }
-    public function login2()
-    {
-        extract($_POST);
-
-        if (isset($email)) {
-            $username = $email;
-        }
-
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        if ($result->num_rows > 0) {
-            $data = $result->fetch_assoc();
-            if (password_verify($password, $data['password'])) {
                 foreach ($data as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
                         $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
@@ -123,17 +137,26 @@ class Action
                 }
 
                 if ($_SESSION['bio']['status'] != 1) {
+                    // Reset login attempts if the user is not an admin
+                    $_SESSION['login_attempts'] = 0;
+
                     foreach ($_SESSION as $key => $value) {
                         unset($_SESSION[$key]);
                     }
                     return 2;
-                    exit;
                 }
+
+                // Reset login attempts on successful login
+                $_SESSION['login_attempts'] = 0;
                 return 1;
             } else {
+                // Increment login attempts on failed login
+                $_SESSION['login_attempts']++;
                 return 3;
             }
         } else {
+            // Increment login attempts on failed login
+            $_SESSION['login_attempts']++;
             return 3;
         }
     }
