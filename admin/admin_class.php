@@ -26,6 +26,23 @@ class Action
 
     public function login()
     {
+        // Check if there is a previous login attempt count stored in the session
+        if (!isset($_SESSION['login_attempts'])) {
+            $_SESSION['login_attempts'] = 0;
+        }
+
+        // Check if the timestamp for lockout has been set
+        if (isset($_SESSION['lockout_time']) && time() > $_SESSION['lockout_time']) {
+            $_SESSION['login_attempts'] = 0;
+        }
+
+        // Check if the user has exceeded the maximum number of login attempts
+        if ($_SESSION['login_attempts'] >= 3) {
+
+            $_SESSION['lockout_time'] = time() + 300;
+            return 4;
+        }
+
         extract($_POST);
 
         $stmt = $this->db->prepare("SELECT * FROM users WHERE username = ?");
@@ -36,6 +53,7 @@ class Action
         if ($result->num_rows > 0) {
             $data = $result->fetch_assoc();
             if (password_verify($password, $data['password'])) {
+                // Successful login
                 foreach ($data as $key => $value) {
                     if ($key != 'password' && !is_numeric($key)) {
                         $_SESSION['login_' . $key] = $this->validateSessionVariable($value);
@@ -43,21 +61,29 @@ class Action
                 }
 
                 if ($_SESSION['login_type'] != 1) {
+                    // Reset login attempts if the user is not an admin
+                    $_SESSION['login_attempts'] = 0;
+
                     foreach ($_SESSION as $key => $value) {
                         unset($_SESSION[$key]);
                     }
                     return 2;
-                    exit;
                 }
+
+                // Reset login attempts on successful login
+                $_SESSION['login_attempts'] = 0;
                 return 1;
             } else {
+                // Increment login attempts on failed login
+                $_SESSION['login_attempts']++;
                 return 3;
             }
         } else {
+            // Increment login attempts on failed login
+            $_SESSION['login_attempts']++;
             return 3;
         }
     }
-
     public function login2()
     {
         extract($_POST);
