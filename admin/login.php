@@ -86,11 +86,6 @@ $('#login-form').submit(function(e) {
         success: function(resp) {
             if (resp == 1) {
                 location.href = 'index.php?page=home';
-            } else if (resp == 4) {
-                $('#login-form').prepend(
-                    '<div class="alert alert-danger">You attempts 5 unsuccessful login. Your login attempts are exceeded. You are blocked for 5 mins.</div>'
-                )
-                $('#login-form button[type="button"]').removeAttr('disabled').html('Login');
             } else {
                 $('#login-form').prepend(
                     '<div class="alert alert-danger">Username or password is incorrect.</div>')
